@@ -6,8 +6,8 @@ export const Navbar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid red;
   box-sizing: border-box;
+  padding: 0px 48px;
 `;
 export const Logo = styled.img`
   width: 39px;
