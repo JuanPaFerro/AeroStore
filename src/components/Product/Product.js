@@ -5,6 +5,7 @@ import buyWhite from "../../assets/icons/buy-white.svg";
 export const Card = styled.div`
   background: #ffffff;
   box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
   width: 100%;
   height: 276px;
   box-sizing: border-box;
@@ -14,11 +15,22 @@ export const Card = styled.div`
   padding: 12px;
   cursor: pointer;
   position: relative;
+  margin-top: ${({ selected }) => (selected ? "0" : "12px")};
+  ${({ selected }) =>
+    selected &&
+    `-webkit-box-shadow: 18px 18px 30px -7px rgba(0,0,0,0.56);
+    -moz-box-shadow: 18px 18px 30px -7px rgba(0,0,0,0.56);
+    box-shadow: 18px 18px 30px -7px rgba(0,0,0,0.56);`}
 `;
 export const CardImageContainer = styled.div`
   background: #ffffff;
   width: 100%;
   height: 182px;
+  position: relative;
+`;
+export const CardImage = styled.img`
+  object-fit: cover;
+  max-width: 100%;
 `;
 export const Line = styled.div`
   background: #d9d9d9;
@@ -49,9 +61,9 @@ export const ProductName = styled.span`
 export const Badge = styled.div`
   width: 42px;
   height: 42px;
-  position: relative;
+  position: absolute;
   top: 0px;
-  float: right;
+  right: 0px;
   background: ${({ selected }) =>
     selected ? `url(${buyWhite})` : `url(${buyBlue})`};
   background-size: cover;
@@ -68,11 +80,16 @@ export const SelectedLayer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(-180deg, #0ad4fa 0%, #25bbf1 100%);
-  opacity: 90%;
+  background-image: linear-gradient(
+    -180deg,
+    rgba(10, 212, 250, 0),
+    rgba(37, 187, 241, 1)
+  );
+  border-radius: 5px;
 `;
 export const SelectedContainer = styled.div`
   width: 100%;
+  padding-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;

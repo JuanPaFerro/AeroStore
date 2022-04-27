@@ -74,7 +74,7 @@ export const Line = styled.div`
 export const ProductsContainer = styled.div`
   width: 100%;
   margin-bottom: 60px;
-  padding-top: 42px;
+  padding-top: 30px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
   gap: 20px;

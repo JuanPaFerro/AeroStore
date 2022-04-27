@@ -16,7 +16,7 @@ import arrowLeft from "../../assets/icons/arrow-left.svg";
 import arrowRight from "../../assets/icons/arrow-right.svg";
 
 const Store = () => {
-  const [selected, setSelected] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   return (
     <Container>
@@ -49,8 +49,8 @@ const Store = () => {
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map((el) => (
           <Product
             key={el}
-            isSelected={selected === el}
-            setSelected={setSelected}
+            isSelected={selectedProduct === el}
+            setSelected={setSelectedProduct}
             id={el}
           />
         ))}

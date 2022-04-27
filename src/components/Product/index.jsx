@@ -13,14 +13,17 @@ import {
   SelectedLayer,
   Text,
   CoinIcon,
+  CardImage,
 } from "./Product";
 import coin from "../../assets/icons/coin.svg";
+import sampleProduct from "../../assets/sample-product.png";
 
 const Product = ({ setSelected, isSelected, id }) => {
   return (
-    <Card onClick={() => setSelected(id)}>
+    <Card onClick={() => setSelected(id)} selected={isSelected}>
       <CardImageContainer>
         <Badge selected={isSelected} />
+        <CardImage src={sampleProduct} alt="product image" />
       </CardImageContainer>
       <Line />
       <InfoContainer>
