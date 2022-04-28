@@ -17,6 +17,7 @@ import arrowRight from "../../assets/icons/arrow-right.svg";
 
 const Store = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [sort, setSort] = useState("recent");
 
   return (
     <Container>
@@ -25,13 +26,22 @@ const Store = () => {
           <Text color="#616161">16 of 32 products</Text>
           <VerticalSeparator />
           <Text>Sort by:</Text>
-          <FilterButton className="active">
+          <FilterButton
+            className={sort === "recent" && "active"}
+            onClick={() => setSort("recent")}
+          >
             <span>Most recent</span>
           </FilterButton>
-          <FilterButton>
+          <FilterButton
+            className={sort === "low" && "active"}
+            onClick={() => setSort("low")}
+          >
             <span>Lowest price</span>
           </FilterButton>
-          <FilterButton>
+          <FilterButton
+            className={sort === "high" && "active"}
+            onClick={() => setSort("high")}
+          >
             <span>Highest price</span>
           </FilterButton>
         </FiltersContainer>

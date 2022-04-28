@@ -27,8 +27,10 @@ export const NavButtonsContainer = styled.div`
 export const NavButton = styled.button`
   background: none;
   border: none;
+  cursor: pointer;
 `;
 export const FilterButton = styled.div`
+  cursor: pointer;
   background: #ededed;
   border-radius: 100px;
   width: 163px;
