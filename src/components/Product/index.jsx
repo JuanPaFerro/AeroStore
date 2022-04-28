@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Shop,
   Card,
@@ -17,31 +17,37 @@ import {
   PointsNeeded,
 } from "./Product";
 import coin from "../../assets/icons/coin.svg";
-import sampleProduct from "../../assets/sample-product.png";
 
-const Product = ({ setSelected, isSelected, id }) => {
-  const points = 6000;
-  const price = Math.floor(Math.random() * 10000);
-  const affordable = price <= points;
+const Product = ({
+  setSelected,
+  isSelected,
+  _id,
+  cost,
+  img,
+  category,
+  name,
+}) => {
+  const points = 500;
+  const affordable = cost <= points;
 
   return (
-    <Card onMouseOver={() => setSelected(id)} selected={isSelected}>
+    <Card onMouseOver={() => setSelected(_id)} selected={isSelected}>
       <CardImageContainer>
         {affordable ? (
           <Shop selected={isSelected} />
         ) : (
           <PointsNeeded>
-            You need {price - points}
+            You need {cost - points}
             <CoinIcon src={coin} size="20px" alt="an icon of a golden coin" />
           </PointsNeeded>
         )}
 
-        <CardImage src={sampleProduct} alt="product image" />
+        <CardImage src={img.hdUrl} alt="product image" />
       </CardImageContainer>
       <Line />
       <InfoContainer>
-        <Category>category</Category>
-        <ProductName>product</ProductName>
+        <Category>{category}</Category>
+        <ProductName>{name}</ProductName>
       </InfoContainer>
       {isSelected && (
         <SelectedLayer affordable={affordable}>
@@ -49,7 +55,7 @@ const Product = ({ setSelected, isSelected, id }) => {
             {affordable ? (
               <>
                 <PointsContainer>
-                  <Text>12.000</Text>
+                  <Text>{cost}</Text>
                   <CoinIcon
                     src={coin}
                     size="26px"
@@ -61,7 +67,7 @@ const Product = ({ setSelected, isSelected, id }) => {
             ) : (
               <>
                 <PointsContainer>
-                  <Text>12.000</Text>
+                  <Text>{cost}</Text>
                   <CoinIcon
                     src={coin}
                     size="26px"

@@ -14,16 +14,33 @@ import {
 import Product from "../Product";
 import arrowLeft from "../../assets/icons/arrow-left.svg";
 import arrowRight from "../../assets/icons/arrow-right.svg";
+import { useGetAllProducts } from "../../hooks/useGetAllProducts";
 
 const Store = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [sort, setSort] = useState("recent");
+  const [page, setPage] = useState(1);
+  const [sortedProducts, setSortedProducts] = useState([]);
+  const { products, loading } = useGetAllProducts();
+  const limit = 16;
+
+  if (loading) {
+    return "loading";
+  }
+
+  useEffect(() => {
+    let start = limit * (page - 1);
+    let end = start + limit;
+    setSortedProducts([...products].slice(start, end));
+  }, [sort, page, products]);
 
   return (
     <Container>
       <Bar>
         <FiltersContainer>
-          <Text color="#616161">16 of 32 products</Text>
+          <Text color="#616161">{`${page * limit} of ${
+            products.length
+          } products`}</Text>
           <VerticalSeparator />
           <Text>Sort by:</Text>
           <FilterButton
@@ -46,36 +63,46 @@ const Store = () => {
           </FilterButton>
         </FiltersContainer>
         <NavButtonsContainer>
-          <NavButton>
-            <img src={arrowLeft} alt="an arrow pointing to the left" />
-          </NavButton>
-          <NavButton>
-            <img src={arrowRight} alt="an arrow pointing to the right" />
-          </NavButton>
+          {page > 1 && (
+            <NavButton onClick={() => setPage((page) => page - 1)}>
+              <img src={arrowLeft} alt="an arrow pointing to the left" />
+            </NavButton>
+          )}
+          {page < products.length / limit && (
+            <NavButton onClick={() => setPage((page) => page + 1)}>
+              <img src={arrowRight} alt="an arrow pointing to the right" />
+            </NavButton>
+          )}
         </NavButtonsContainer>
       </Bar>
       <Line />
       <ProductsContainer>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map((el) => (
+        {sortedProducts.map((product) => (
           <Product
-            key={el}
-            isSelected={selectedProduct === el}
+            key={product._id}
+            isSelected={selectedProduct === product._id}
             setSelected={setSelectedProduct}
-            id={el}
+            {...product}
           />
         ))}
       </ProductsContainer>
       <Bar>
         <FiltersContainer>
-          <Text color="#616161">16 of 32 products</Text>
+          <Text color="#616161">{`${page * limit} of ${
+            products.length
+          } products`}</Text>
         </FiltersContainer>
         <NavButtonsContainer>
-          <NavButton>
-            <img src={arrowLeft} alt="an arrow pointing to the left" />
-          </NavButton>
-          <NavButton>
-            <img src={arrowRight} alt="an arrow pointing to the right" />
-          </NavButton>
+          {page > 1 && (
+            <NavButton onClick={() => setPage((page) => page - 1)}>
+              <img src={arrowLeft} alt="an arrow pointing to the left" />
+            </NavButton>
+          )}
+          {page < products.length / limit && (
+            <NavButton onClick={() => setPage((page) => page + 1)}>
+              <img src={arrowRight} alt="an arrow pointing to the right" />
+            </NavButton>
+          )}
         </NavButtonsContainer>
       </Bar>
       <Line />
