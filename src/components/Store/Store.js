@@ -6,7 +6,7 @@ export const Container = styled.div`
   width: 100%;
   box-sizing: border-box;
   padding: 0 132px;
-  margin-bottom: 74px;
+  padding-bottom: 74px;
 `;
 export const Bar = styled.div`
   display: flex;

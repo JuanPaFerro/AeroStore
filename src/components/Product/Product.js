@@ -4,6 +4,7 @@ import buyWhite from "../../assets/icons/buy-white.svg";
 
 export const Card = styled.div`
   background: #ffffff;
+  transition: 0.3s ease-in-out;
   box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   width: 100%;
@@ -58,7 +59,7 @@ export const ProductName = styled.span`
   letter-spacing: -0.04px;
   text-align: left;
 `;
-export const Badge = styled.div`
+export const Shop = styled.div`
   width: 42px;
   height: 42px;
   position: absolute;
@@ -70,6 +71,24 @@ export const Badge = styled.div`
   border-radius: 100%;
   z-index: 10;
 `;
+export const PointsNeeded = styled.div`
+  height: 42px;
+  width: 142px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  opacity: 0.8;
+  background: #616161;
+  border-radius: 100px;
+
+  font-family: SourceSansPro-Regular;
+  font-size: 14px;
+  color: #ffffff;
+  letter-spacing: -0.03px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 export const SelectedLayer = styled.div`
   height: 100%;
   width: 100%;
@@ -80,11 +99,18 @@ export const SelectedLayer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(
+  background-image: ${({ affordable }) =>
+    affordable
+      ? `linear-gradient(
     -180deg,
     rgba(10, 212, 250, 0),
     rgba(37, 187, 241, 1)
-  );
+  );`
+      : `linear-gradient(
+    -180deg,
+    rgba(250, 250, 250, 0),
+    rgba(50, 50, 50, 1)
+  );`};
   border-radius: 5px;
 `;
 export const SelectedContainer = styled.div`
@@ -103,14 +129,14 @@ export const PointsContainer = styled.div`
 `;
 export const CoinIcon = styled.img`
   background-image: radial-gradient(50% -18%, #ffcf00 50%, #f7ae15 100%);
-  width: 26px;
-  height: 26px;
+  width: ${({ size }) => size};
+  height: ${({ size }) => size};
   border-radius: 100%;
   margin-left: 10px;
 `;
 export const Text = styled.span`
   font-family: SourceSansPro-Regular;
-  font-size: 36px;
+  font-size: ${({ size }) => size || "36px"};
   color: #ffffff;
   letter-spacing: -0.08px;
   text-align: center;
@@ -118,7 +144,7 @@ export const Text = styled.span`
 export const RedeemButton = styled.div`
   height: 42px;
   width: 80%;
-  border-radius: 500px;
+  border-radius: 100px;
   background: #ffffff;
   font-family: SourceSansPro-Regular;
   font-size: 18px;
