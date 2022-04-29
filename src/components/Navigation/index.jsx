@@ -11,14 +11,14 @@ import {
 import logoImage from "../../assets/aerolab-logo.svg";
 import coin from "../../assets/icons/coin.svg";
 
-const Navigation = () => {
+const Navigation = ({ user}) => {
   return (
     <Navbar>
       <Logo src={logoImage} />
       <InfoContainer>
-        <UserName>John Kite</UserName>
+        <UserName>{user.name}</UserName>
         <PointsHolder>
-          <Points>6000</Points>
+          <Points>{user.points}</Points>
           <CoinIcon src={coin} alt="an icon of a golden coin" />
         </PointsHolder>
       </InfoContainer>

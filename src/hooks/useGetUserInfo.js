@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export function useGetAllProducts() {
-  const [products, setProducts] = useState([]);
+export function useGetUserInfo() {
+  const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
   const config = {
     headers: { Authorization: `Bearer ${import.meta.env.VITE_TOKEN}` },
@@ -10,16 +10,16 @@ export function useGetAllProducts() {
 
   useEffect(() => {
     setLoading(true);
-    const fetchProducts = async () => {
+    const fetchUserData = async () => {
       const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/products`,
+        `${import.meta.env.VITE_API_URL}/user/me`,
         config
       );
-      setProducts(res.data);
+      setUser(res.data);
     };
-    fetchProducts();
+    fetchUserData();
     setLoading(false);
   }, []);
 
-  return { products, loading };
+  return { user, loading };
 }

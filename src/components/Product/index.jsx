@@ -26,8 +26,8 @@ const Product = ({
   img,
   category,
   name,
+  points
 }) => {
-  const points = 500;
   const affordable = cost <= points;
 
   return (

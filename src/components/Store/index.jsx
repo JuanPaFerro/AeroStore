@@ -16,7 +16,7 @@ import arrowLeft from "../../assets/icons/arrow-left.svg";
 import arrowRight from "../../assets/icons/arrow-right.svg";
 import { useGetAllProducts } from "../../hooks/useGetAllProducts";
 
-const Store = () => {
+const Store = ({ user }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [sort, setSort] = useState("recent");
   const [page, setPage] = useState(1);
@@ -83,6 +83,7 @@ const Store = () => {
             isSelected={selectedProduct === product._id}
             setSelected={setSelectedProduct}
             {...product}
+            points={user.points}
           />
         ))}
       </ProductsContainer>
