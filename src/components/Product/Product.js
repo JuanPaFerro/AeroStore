@@ -127,6 +127,7 @@ export const PointsContainer = styled.div`
   margin-bottom: 10px;
 `;
 export const CoinIcon = styled.img`
+  background-image: radial-gradient(50% -18%, #ffcf00 50%, #f7ae15 100%);
   width: ${({ size }) => size};
   height: ${({ size }) => size};
   border-radius: 100%;

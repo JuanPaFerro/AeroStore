@@ -31,7 +31,19 @@ const Store = ({ user }) => {
   useEffect(() => {
     let start = limit * (page - 1);
     let end = start + limit;
-    setSortedProducts([...products].slice(start, end));
+    const newProducts =
+      sort !== "recent"
+        ? [...products].sort((a, b) => {
+            if (sort === "low") {
+              return a.cost - b.cost;
+            }
+            if (sort === "high") {
+              return b.cost - a.cost;
+            }
+          })
+        : [...products];
+    console.log(newProducts);
+    setSortedProducts([...newProducts].slice(start, end));
   }, [sort, page, products]);
 
   return (
@@ -45,13 +57,19 @@ const Store = ({ user }) => {
           <Text>Sort by:</Text>
           <FilterButton
             className={sort === "recent" && "active"}
-            onClick={() => setSort("recent")}
+            onClick={() => {
+              setSort("recent");
+              setPage(1);
+            }}
           >
             <span>Most recent</span>
           </FilterButton>
           <FilterButton
             className={sort === "low" && "active"}
-            onClick={() => setSort("low")}
+            onClick={() => {
+              setSort("low");
+              setPage(1);
+            }}
           >
             <span>Lowest price</span>
           </FilterButton>
