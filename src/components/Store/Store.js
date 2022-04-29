@@ -22,7 +22,7 @@ export const FiltersContainer = styled.div`
 export const NavButtonsContainer = styled.div`
   display: flex;
   width: 108px;
-  justify-content: space-between;
+  justify-content: flex-end;
 `;
 export const NavButton = styled.button`
   background: none;
