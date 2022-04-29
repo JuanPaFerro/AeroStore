@@ -34,6 +34,29 @@ export const PointsHolder = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  position: relative;
+`;
+export const AddPointsLayer = styled.div`
+  display: none;
+  ${PointsHolder}:hover & {
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    background-color: #2f98df;
+    opacity: 90%;
+    color: #ffffff;
+    font-size: 24px;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:active {
+      top: 1px;
+    }
+  }
 `;
 export const Points = styled.span`
   font-family: SourceSansPro-Regular;

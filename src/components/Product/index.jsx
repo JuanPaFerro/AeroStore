@@ -35,6 +35,7 @@ const Product = ({
   const affordable = cost <= points;
   const sendRequest = useCallback(async () => {
     if (isSending) return;
+
     setIsSending(true);
     const config = {
       headers: { Authorization: `Bearer ${import.meta.env.VITE_TOKEN}` },

@@ -16,7 +16,7 @@ import arrowLeft from "../../assets/icons/arrow-left.svg";
 import arrowRight from "../../assets/icons/arrow-right.svg";
 import { useGetAllProducts } from "../../hooks/useGetAllProducts";
 
-const Store = ({ user }) => {
+const Store = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [sort, setSort] = useState("recent");
   const [page, setPage] = useState(1);
@@ -24,9 +24,7 @@ const Store = ({ user }) => {
   const { products, loading } = useGetAllProducts();
   const limit = 16;
 
-  if (loading) {
-    return "loading";
-  }
+  if (loading) return "loading";
 
   useEffect(() => {
     let start = limit * (page - 1);
@@ -42,7 +40,6 @@ const Store = ({ user }) => {
             }
           })
         : [...products];
-    console.log(newProducts);
     setSortedProducts([...newProducts].slice(start, end));
   }, [sort, page, products]);
 
