@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Shop,
   Card,
@@ -16,6 +16,7 @@ import {
   CardImage,
   PointsNeeded,
 } from "./Product";
+import axios from "axios";
 import coin from "../../assets/icons/coin.svg";
 
 const Product = ({
@@ -26,9 +27,22 @@ const Product = ({
   img,
   category,
   name,
-  points
+  points,
 }) => {
   const affordable = cost <= points;
+  const config = {
+    headers: { Authorization: `Bearer ${import.meta.env.VITE_TOKEN}` },
+  };
+  const bodyParameters = {
+    productId: _id,
+  };
+  const onRedeem = () => {
+    axios.post(
+      `${import.meta.env.VITE_API_URL}/redeem`,
+      bodyParameters,
+      config
+    );
+  };
 
   return (
     <Card onMouseOver={() => setSelected(_id)} selected={isSelected}>
@@ -62,7 +76,7 @@ const Product = ({
                     alt="an icon of a golden coin"
                   />
                 </PointsContainer>
-                <RedeemButton>Redeem now</RedeemButton>
+                <RedeemButton onClick={onRedeem}>Redeem now</RedeemButton>
               </>
             ) : (
               <>
