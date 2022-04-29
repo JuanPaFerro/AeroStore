@@ -77,8 +77,7 @@ export const PointsNeeded = styled.div`
   position: absolute;
   top: 0px;
   right: 0px;
-  opacity: 0.8;
-  background: #616161;
+  background: rgba(97, 97, 97, 0.8);
   border-radius: 100px;
 
   font-family: SourceSansPro-Regular;
@@ -128,7 +127,6 @@ export const PointsContainer = styled.div`
   margin-bottom: 10px;
 `;
 export const CoinIcon = styled.img`
-  background-image: radial-gradient(50% -18%, #ffcf00 50%, #f7ae15 100%);
   width: ${({ size }) => size};
   height: ${({ size }) => size};
   border-radius: 100%;
@@ -145,12 +143,48 @@ export const RedeemButton = styled.div`
   height: 42px;
   width: 80%;
   border-radius: 100px;
-  background: #ffffff;
+  background-color: transparent;
   font-family: SourceSansPro-Regular;
   font-size: 18px;
-  color: #616161;
+  color: #ffffff;
   letter-spacing: -0.04px;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
+  font-size: bold;
+  border: 2px solid #ffffff;
+  position: relative;
+  transition-duration: 0.4s;
+
+  &:hover {
+    border: 2px rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.6);
+    color: #616161;
+  }
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.5s;
+    box-shadow: 0 0 10px 40px white;
+  }
+  &:active:after {
+    box-shadow: 0 0 0 0 white;
+    position: absolute;
+    border-radius: 100px;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    transition: 0s;
+  }
+  &:active {
+    top: 1px;
+  }
 `;

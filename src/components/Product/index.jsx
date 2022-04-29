@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState, useContext } from "react";
 import {
   Shop,
   Card,
@@ -18,6 +18,7 @@ import {
 } from "./Product";
 import axios from "axios";
 import coin from "../../assets/icons/coin.svg";
+import { Context } from "../../Context";
 
 const Product = ({
   setSelected,
@@ -27,25 +28,31 @@ const Product = ({
   img,
   category,
   name,
-  points,
 }) => {
+  const { user, fetchUserData } = useContext(Context);
+  const [isSending, setIsSending] = useState(false);
+  const { points } = user;
   const affordable = cost <= points;
-  const config = {
-    headers: { Authorization: `Bearer ${import.meta.env.VITE_TOKEN}` },
-  };
-  const bodyParameters = {
-    productId: _id,
-  };
-  const onRedeem = () => {
-    axios.post(
+  const sendRequest = useCallback(async () => {
+    if (isSending) return;
+    setIsSending(true);
+    const config = {
+      headers: { Authorization: `Bearer ${import.meta.env.VITE_TOKEN}` },
+    };
+    const bodyParameters = {
+      productId: _id,
+    };
+    await axios.post(
       `${import.meta.env.VITE_API_URL}/redeem`,
       bodyParameters,
       config
     );
-  };
+    fetchUserData();
+    setIsSending(false);
+  }, [isSending]);
 
   return (
-    <Card onMouseOver={() => setSelected(_id)} selected={isSelected}>
+    <Card onClick={() => setSelected(_id)} selected={isSelected}>
       <CardImageContainer>
         {affordable ? (
           <Shop selected={isSelected} />
@@ -66,30 +73,23 @@ const Product = ({
       {isSelected && (
         <SelectedLayer affordable={affordable}>
           <SelectedContainer>
+            <PointsContainer>
+              <Text>{cost}</Text>
+              <CoinIcon src={coin} size="26px" alt="an icon of a golden coin" />
+            </PointsContainer>
             {affordable ? (
-              <>
-                <PointsContainer>
-                  <Text>{cost}</Text>
-                  <CoinIcon
-                    src={coin}
-                    size="26px"
-                    alt="an icon of a golden coin"
-                  />
-                </PointsContainer>
-                <RedeemButton onClick={onRedeem}>Redeem now</RedeemButton>
-              </>
+              <RedeemButton disabled={isSending} onClick={sendRequest}>
+                Redeem now
+              </RedeemButton>
             ) : (
-              <>
-                <PointsContainer>
-                  <Text>{cost}</Text>
-                  <CoinIcon
-                    src={coin}
-                    size="26px"
-                    alt="an icon of a golden coin"
-                  />
-                </PointsContainer>
-                <Text size="20px">You don't have enough points</Text>
-              </>
+              <PointsContainer>
+                <Text size="20px">{`You only have ${points} `}</Text>
+                <CoinIcon
+                  src={coin}
+                  size="20px"
+                  alt="an icon of a golden coin"
+                />
+              </PointsContainer>
             )}
           </SelectedContainer>
         </SelectedLayer>

@@ -83,7 +83,6 @@ const Store = ({ user }) => {
             isSelected={selectedProduct === product._id}
             setSelected={setSelectedProduct}
             {...product}
-            points={user.points}
           />
         ))}
       </ProductsContainer>

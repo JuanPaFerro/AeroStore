@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Navbar,
   Logo,
@@ -10,8 +10,11 @@ import {
 } from "./Navigation";
 import logoImage from "../../assets/aerolab-logo.svg";
 import coin from "../../assets/icons/coin.svg";
+import { Context } from "../../Context";
 
-const Navigation = ({ user}) => {
+const Navigation = () => {
+  const { user } = useContext(Context);
+
   return (
     <Navbar>
       <Logo src={logoImage} />
