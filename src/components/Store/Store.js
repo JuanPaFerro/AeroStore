@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   width: 100%;
   box-sizing: border-box;
-  padding: 0 132px;
+  padding: 0 5%;
   padding-bottom: 74px;
 `;
 export const Bar = styled.div`
@@ -17,12 +17,30 @@ export const Bar = styled.div`
 `;
 export const FiltersContainer = styled.div`
   display: flex;
-  width: fit-content;
+  @media (max-width: 768px) {
+    position: fixed;
+    box-sizing: border-box;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 20;
+    width: 100%;
+    padding: 2%;
+    justify-content: space-evenly;
+  }
+  @media (max-width: 540px) {
+    justify-content: space-between;
+  }
+`;
+export const LeftBarContainer = styled.div`
+  display: flex;
+  width: 90%;
 `;
 export const NavButtonsContainer = styled.div`
   display: flex;
-  width: 108px;
   justify-content: flex-end;
+  width: 10%;
 `;
 export const NavButton = styled.button`
   background: none;
@@ -37,14 +55,12 @@ export const FilterButton = styled.div`
   height: 48px;
   display: flex;
   align-items: center;
+  margin-left: 10px;
   justify-content: center;
-  margin-left: 24px;
   & > span {
     font-family: SourceSansPro-Regular;
     font-size: 24px;
     color: #a3a3a3;
-    letter-spacing: -0.15px;
-    line-height: 48px;
     text-align: left;
   }
   &.active {
@@ -53,20 +69,37 @@ export const FilterButton = styled.div`
       color: #ffffff;
     }
   }
+
+  @media (max-width: 768px) {
+    margin: 0px;
+    width: fit-content;
+    padding: 0 10px;
+    box-sizing:border-box ;
+    & > span {
+      font-size: 18px;
+    }
+  }
 `;
 export const VerticalSeparator = styled.div`
   background: #d9d9d9;
   width: 1px;
   height: 49px;
   margin: 0 24px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 export const Text = styled.span`
   font-family: SourceSansPro-Regular;
   font-size: 24px;
   color: ${({ color }) => color || "#a3a3a3"};
   letter-spacing: -0.15px;
-  line-height: 48px;
   text-align: left;
+  align-self: center;
+  @media (max-width: 540px) {
+    font-size: 20px;
+    display: ${({ needsToHide }) => needsToHide && "none"};
+  }
 `;
 export const Line = styled.div`
   background: #d9d9d9;

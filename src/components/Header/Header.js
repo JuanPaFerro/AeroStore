@@ -7,8 +7,6 @@ export const HeaderContainer = styled.div`
 `;
 export const HeaderBackground = styled.div`
   width: 100%;
-  object-fit: cover;
-
   &::before {
     content: "";
     display: block;
@@ -16,6 +14,9 @@ export const HeaderBackground = styled.div`
     height: 412px;
     background-image: url(${headerImg});
     background-size: cover;
+    @media (max-width: 768px) {
+      background-position: right bottom;
+    }
   }
 `;
 export const TextContainer = styled.div`
@@ -24,6 +25,12 @@ export const TextContainer = styled.div`
   position: relative;
   bottom: 115px;
   left: 133px;
+  @media (max-width: 768px) {
+    height: fit-content;
+    width: fit-content;
+    bottom: 115px;
+    left: 60px;
+  }
 `;
 
 export const Text = styled.span`
@@ -31,4 +38,7 @@ export const Text = styled.span`
   font-size: 64px;
   color: #ffffff;
   text-align: left;
+  @media (max-width: 768px) {
+    font-size: 40px;
+  }
 `;

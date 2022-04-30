@@ -10,6 +10,7 @@ import {
   NavButton,
   Line,
   ProductsContainer,
+  LeftBarContainer,
 } from "./Store";
 import Product from "../Product";
 import arrowLeft from "../../assets/icons/arrow-left.svg";
@@ -46,37 +47,39 @@ const Store = () => {
   return (
     <Container>
       <Bar>
-        <FiltersContainer>
+        <LeftBarContainer>
           <Text color="#616161">{`${page * limit} of ${
             products.length
           } products`}</Text>
           <VerticalSeparator />
-          <Text>Sort by:</Text>
-          <FilterButton
-            className={sort === "recent" && "active"}
-            onClick={() => {
-              setSort("recent");
-              setPage(1);
-            }}
-          >
-            <span>Most recent</span>
-          </FilterButton>
-          <FilterButton
-            className={sort === "low" && "active"}
-            onClick={() => {
-              setSort("low");
-              setPage(1);
-            }}
-          >
-            <span>Lowest price</span>
-          </FilterButton>
-          <FilterButton
-            className={sort === "high" && "active"}
-            onClick={() => setSort("high")}
-          >
-            <span>Highest price</span>
-          </FilterButton>
-        </FiltersContainer>
+          <FiltersContainer>
+            <Text needsToHide={true}>Sort by:</Text>
+            <FilterButton
+              className={sort === "recent" && "active"}
+              onClick={() => {
+                setSort("recent");
+                setPage(1);
+              }}
+            >
+              <span>Most recent</span>
+            </FilterButton>
+            <FilterButton
+              className={sort === "low" && "active"}
+              onClick={() => {
+                setSort("low");
+                setPage(1);
+              }}
+            >
+              <span>Lowest price</span>
+            </FilterButton>
+            <FilterButton
+              className={sort === "high" && "active"}
+              onClick={() => setSort("high")}
+            >
+              <span>Highest price</span>
+            </FilterButton>
+          </FiltersContainer>
+        </LeftBarContainer>
         <NavButtonsContainer>
           {page > 1 && (
             <NavButton onClick={() => setPage((page) => page - 1)}>
@@ -102,11 +105,11 @@ const Store = () => {
         ))}
       </ProductsContainer>
       <Bar>
-        <FiltersContainer>
+        <LeftBarContainer>
           <Text color="#616161">{`${page * limit} of ${
             products.length
           } products`}</Text>
-        </FiltersContainer>
+        </LeftBarContainer>
         <NavButtonsContainer>
           {page > 1 && (
             <NavButton onClick={() => setPage((page) => page - 1)}>
