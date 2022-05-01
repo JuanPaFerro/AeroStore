@@ -85,6 +85,9 @@ export const VerticalSeparator = styled.div`
   width: 1px;
   height: 49px;
   margin: 0 24px;
+  @media (max-width: 1024px) {
+    margin: 0 10px;
+  }
   @media (max-width: 768px) {
     display: none;
   }
