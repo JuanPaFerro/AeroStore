@@ -32,7 +32,6 @@ export const TextContainer = styled.div`
     left: 60px;
   }
 `;
-
 export const Text = styled.span`
   font-family: SourceSansPro-Bold;
   font-size: 64px;

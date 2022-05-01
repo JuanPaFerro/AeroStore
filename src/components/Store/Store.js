@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   width: 100%;
   box-sizing: border-box;
-  padding: 0 5%;
+  padding: 0 6%;
   padding-bottom: 74px;
 `;
 export const Bar = styled.div`

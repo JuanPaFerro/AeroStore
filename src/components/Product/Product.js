@@ -8,7 +8,6 @@ export const Card = styled.div`
   box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   width: 100%;
-  height: 276px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -25,8 +24,8 @@ export const Card = styled.div`
 `;
 export const CardImageContainer = styled.div`
   background: #ffffff;
-  width: 100%;
-  height: 182px;
+  min-width: 100%;
+  min-height: 182px;
   position: relative;
 `;
 export const CardImage = styled.img`

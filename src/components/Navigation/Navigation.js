@@ -7,7 +7,7 @@ export const Navbar = styled.div`
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-  padding: 0px 5%;
+  padding: 0px 6%;
 `;
 export const Logo = styled.img`
   width: 39px;
