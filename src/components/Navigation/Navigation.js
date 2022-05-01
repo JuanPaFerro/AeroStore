@@ -1,4 +1,9 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const delayedRenderingAnimation = keyframes`
+0% {opacity: 0;}
+100% {opacity: 1;}
+`;
 
 export const Navbar = styled.div`
   height: 80px;
@@ -95,6 +100,11 @@ export const HistoryContainer = styled.div`
   border-radius: 4px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   z-index: 1;
+  transition: 2s all ease-in-out;
+  opacity: 0;
+  animation-name: ${delayedRenderingAnimation};
+  animation-duration: 0.9s;
+  animation-fill-mode: forwards;
 `;
 export const HistoryItem = styled.div`
   width: 100%;
@@ -103,11 +113,17 @@ export const HistoryItem = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 10px 0px;
+  transition: 2s all ease-in-out;
+  opacity: 0;
+  animation-name: ${delayedRenderingAnimation};
+  animation-delay: calc(0.2s * ${({ delay }) => delay});
+  animation-duration: 0.9s;
+  animation-fill-mode: forwards;
 `;
 export const HorizontalContainer = styled.div`
   height: 50px;
   display: flex;
-  align-items: center;  
+  align-items: center;
 `;
 export const ItemImage = styled.img`
   height: 30px;

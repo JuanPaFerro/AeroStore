@@ -52,7 +52,7 @@ const Navigation = () => {
           {showHistory && (
             <HistoryContainer>
               {[...user.redeemHistory].reverse().map((product, index) => (
-                <HistoryItem key={`${product._id}-${index}`}>
+                <HistoryItem delay={index} key={`${product._id}-${index}`}>
                   <HorizontalContainer>
                     <ItemImage src={product.img.url} />
                     <ItemText>{product.name}</ItemText>
