@@ -51,22 +51,24 @@ const Navigation = () => {
           />
           {showHistory && (
             <HistoryContainer>
-              {[...user.redeemHistory].reverse().map((product, index) => (
-                <HistoryItem delay={index} key={`${product._id}-${index}`}>
-                  <HorizontalContainer>
-                    <ItemImage src={product.img.url} />
-                    <ItemText>{product.name}</ItemText>
-                  </HorizontalContainer>
-                  <HorizontalContainer>
-                    <ItemText>{product.cost}</ItemText>
-                    <CoinIcon
-                      src={coin}
-                      size="14px"
-                      alt="an icon of a golden coin"
-                    />
-                  </HorizontalContainer>
-                </HistoryItem>
-              ))}
+              {user?.redeemHistory.length > 0
+                ? [...user.redeemHistory].reverse().map((product, index) => (
+                    <HistoryItem delay={index} key={`${product._id}-${index}`}>
+                      <HorizontalContainer>
+                        <ItemImage src={product.img.url} />
+                        <ItemText>{product.name}</ItemText>
+                      </HorizontalContainer>
+                      <HorizontalContainer>
+                        <ItemText>{product.cost}</ItemText>
+                        <CoinIcon
+                          src={coin}
+                          size="14px"
+                          alt="an icon of a golden coin"
+                        />
+                      </HorizontalContainer>
+                    </HistoryItem>
+                  ))
+                : "There's no history to show"}
             </HistoryContainer>
           )}
         </BagContainer>
